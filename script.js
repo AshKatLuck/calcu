@@ -11,6 +11,19 @@ function sendNumberValue(number){
     
 }
 
+//reset all
+function resetAll(){
+    console.log('clear')
+    calculatorDisplay.textContent='0';
+}
+
+//Add decimal point
+function addDecimal(){
+    if(!calculatorDisplay.textContent.includes('.')){
+        calculatorDisplay.textContent=`${calculatorDisplay.textContent}.`;
+    }
+}
+
 //Event listeners
 inputBtns.forEach((inputBtn)=>{
     if(inputBtn.classList.length==0){
@@ -18,6 +31,11 @@ inputBtns.forEach((inputBtn)=>{
     }else if(inputBtn.classList.contains('operator')){
         inputBtn.addEventListener('click',()=>sendNumberValue(inputBtn.value));
     }else if(inputBtn.classList.contains('decimal')){
-        inputBtn.addEventListener('click',()=>sendNumberValue('.'));
+        inputBtn.addEventListener('click',addDecimal);
     }
+});
+
+
+clearBtn.addEventListener('click', ()=>{
+    resetAll();
 });
